@@ -1,3 +1,20 @@
 .Layout {
     display: flex;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+
+.layout-sidebar{
+    // width: 200px;
+    border: 1px solid black;
+    padding: 1.5rem;
+    grid-column: span 1;
+}
+
+.layout-content {
+    // flex: 1;
+    border: 1px solid black;
+    padding: 1.5rem;
+    grid-column: span 7;
 }

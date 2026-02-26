@@ -5,12 +5,12 @@ import '../styles/Layout.scss';
 export const Layout = () => {
     return (
         <div className='Layout'>
-            <div>
+            <header className='layout-sidebar'>
                 <Navbar />
-            </div>
-            <div>
+            </header>
+            <main className='layout-content'>
                 <Outlet />
-            </div>
+            </main>
         </div>
     );
 }
