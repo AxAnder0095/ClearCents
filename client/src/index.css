@@ -9,6 +9,10 @@
   font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
 }
 
+body, html {
+  background-color: #19183C;
+}
+
 img {
   width: 100%;
 }

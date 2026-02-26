@@ -1,0 +1,124 @@
+$mobile-screen: 600px;
+$tablet: 767px;
+$small-screen: 1024px;
+$desktop: 1200px;
+$large-desktop: 1920px;
+
+.Overview {
+    color: white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.overview-header {
+    background-color: #19183C;
+    padding: 1.5rem;
+}
+
+.overview-content {
+    // background-color: #1F1E4A;
+    background-color: #323072;
+    flex: 1;
+    min-height: 0;
+    border-top-left-radius: 2rem;
+    padding: 2rem;
+    // border: 1px solid white;
+}
+
+.overview-grid {
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.overview-quick-look {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    gap: 0.75rem;
+
+    .overview-cards {
+        display: flex;
+        gap: 0.75rem;
+        color: black;
+        flex-shrink: 0;
+
+        .overview-card {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            flex: 1;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+
+            .card-value {
+                font-size: 2.5rem;
+                font-weight: 600;
+            }
+        }
+
+        .overview-card--balance {
+            background-color: #4756FF;
+        }
+
+        .overview-card--expenses {
+            background-color: #3AFFA9;
+        }
+
+        .overview-card--income {
+            background-color: #43FFE9;
+        }
+    }
+
+    .overview-spending-graph {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        background-color: #19183C;
+        border-radius: 1rem;
+        padding: 1.5rem;
+
+        .overview-spending-bar-chart {
+            flex: 1;
+            min-height: 0;
+        }
+    }
+}
+
+.overview-spending-habits {
+    background-color: #19183C;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+}
+
+.overview-entries {
+    background-color: #19183C;
+    border-radius: 1rem;
+    padding: 1.5rem;
+}
+
+.overview-extra {
+    background-color: #19183C;
+    border-radius: 1rem;
+    padding: 1.5rem;
+}
+
+
+
+
+@media (max-width: $large-desktop) {
+    .overview-quick-look {
+        .overview-cards {
+            .overview-card {
+                .card-value {
+                    font-size: 2rem;
+                }
+            }
+        }
+    }
+}

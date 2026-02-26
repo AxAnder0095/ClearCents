@@ -6,6 +6,10 @@ const transactionSchema = new mongoose.Schema({
         enum: ['income', 'expense'],
         required: [true, 'Transaction type is required']
     },
+    source: {
+        type: String,
+        required: [true, 'Source is required']
+    },
     amount: {
         type: Number,
         required: [true, 'Amount is required']

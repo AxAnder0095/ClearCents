@@ -1,3 +1,15 @@
 .Navbar {
-    border: 1px solid black;
+    color: white;
+    padding: 2rem 1.5rem;
+    // border: 1px solid white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.navbar-bottom {
+    display: flex;
+    justify-content: center;
+    // border: 1px solid white;
 }
