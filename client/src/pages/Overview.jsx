@@ -1,5 +1,8 @@
 import '../styles/Overview.scss';
 import { SpendingBarChart } from '../components/SpendingBarChart.jsx';
+import { entryMock } from '../mocks/entry.mock.js';
+import { FaMoneyCheckAlt } from "react-icons/fa";
+
 
 export const Overview = () => {
     return (
@@ -28,7 +31,15 @@ export const Overview = () => {
                             </div>
                         </div>
                         <div className='overview-spending-graph'>
-                            <p>Spending Graph 7 day bar chart</p>
+                            <div className='overview-spending-header'>
+                                <div className='spending-left'>
+                                    <span><FaMoneyCheckAlt className='spending-icon' /></span>
+                                    <p>Daily Spending</p>
+                                </div>
+                                <div className='spending-right'>
+                                    <p>Add an Expense</p>
+                                </div>
+                            </div>
                             <div className='overview-spending-bar-chart'>
                                 <SpendingBarChart />
                             </div>
@@ -41,10 +52,13 @@ export const Overview = () => {
 
 
                     <article className='overview-spending-habits'>
-                        <p>Spending Habits dual line chart</p>
+                        <p><FaMoneyCheckAlt className='spending-icon' /> <span style={{ display: "inline-block", verticalAlign: "middle" }}>Spending Habits</span></p>
                     </article>
                     <article className='overview-entries'>
-                        <p>Entries</p>
+                        <p className='overview-entries-header'>Entries</p>
+                        <div className='overview-entries-table-container'>
+
+                        </div>
                     </article>
                     <article className='overview-extra'>
                         <p>Extra</p>

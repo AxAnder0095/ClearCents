@@ -83,6 +83,18 @@ $large-desktop: 1920px;
         border-radius: 1rem;
         padding: 1.5rem;
 
+        .overview-spending-header {
+            display: flex;
+            justify-content: space-between;
+
+            .spending-left {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                border: 1px solid white;
+            }
+        }
+
         .overview-spending-bar-chart {
             flex: 1;
             min-height: 0;
@@ -94,12 +106,30 @@ $large-desktop: 1920px;
     background-color: #19183C;
     border-radius: 0.5rem;
     padding: 1.5rem;
+
+    .spending-icon {
+        font-size: 1.5rem;
+        margin-right: 0.5rem;
+    }
 }
 
 .overview-entries {
     background-color: #19183C;
     border-radius: 1rem;
     padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+
+    .overview-entries-header {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 3rem;
+        flex-shrink: 0;
+    }
+
+    
 }
 
 .overview-extra {
