@@ -1,10 +1,20 @@
 import '../styles/Overview.scss';
 import { SpendingBarChart } from '../components/SpendingBarChart.jsx';
-import { entryMock } from '../mocks/entry.mock.js';
 import { FaMoneyCheckAlt } from "react-icons/fa";
+import { useMockData } from '../hooks/useMockData.jsx';
 
 
 export const Overview = () => {
+    const {
+        getIncomeEntries,
+        getExpenseEntries,
+        getBalance,
+        getIncome,
+        getExpenses
+    } = useMockData();
+    const incomeEntries = getIncomeEntries();
+    const expenseEntries = getExpenseEntries();
+
     return (
         <div className="Overview">
             <section className='overview-header'>
@@ -18,17 +28,17 @@ export const Overview = () => {
                         <div className='overview-cards'>
                             <div className='overview-card overview-card--balance'>
                                 <p className='card-header'>Total Balance</p>
-                                <p className='card-value'>$27,550</p>
+                                <p className='card-value'>${getBalance()}</p>
                                 <p className='card-change'>+5% from last month</p>
                             </div>
                             <div className='overview-card overview-card--income'>
                                 <p className='card-header'>Total Income</p>
-                                <p className='card-value'>$1,450</p>
+                                <p className='card-value'>${getIncome()}</p>
                                 <p className='card-change'>+5% from last month</p>
                             </div>
                             <div className='overview-card overview-card--expenses'>
                                 <p className='card-header'>Total Expenses</p>
-                                <p className='card-value'>$29,000</p>
+                                <p className='card-value'>${getExpenses()}</p>
                                 <p className='card-change'>+5% from last month</p>
                             </div>
                         </div>
@@ -49,23 +59,49 @@ export const Overview = () => {
 
                     {/* 2 line chart */}
                     <article className='overview-spending-habits'>
-                        <p><FaMoneyCheckAlt className='spending-icon' /> <span style={{ display: "inline-block", verticalAlign: "middle" }}>Spending Habits</span></p>
+                        <h2 className='spending-habits-header'>Spending Habits</h2>
+                        <div className='spending-bar-chart'>
+                            <SpendingBarChart />
+                        </div>
                     </article>
 
 
                     {/* distribution */}
                     <article className='overview-distribution'>
                         <p className='overview-distribution-header'>Distribution</p>
-                        
+
                     </article>
 
                     {/* entries */}
                     <article className='overview-entries'>
-                        <div>
-                            <h2>Income</h2>
+                        <div className='entry-box'>
+                            <h2 className='entry-header'>Income</h2>
+                            <div className='entry-types'>
+                                {incomeEntries.map((entry) => (
+                                    <div key={entry.id} className='entry-type'>
+                                        <div>
+                                            <p className='entry-name'>{entry.type}</p>
+                                            <p className='entry-date'>{entry.date}</p>
+
+                                        </div>
+                                        <p className='entry-amount entry-amount--income'>${entry.amount}</p>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                        <div>
-                            <h2>Expenses</h2>
+                        <div className='entry-box'>
+                            <h2 className='entry-header'>Expenses</h2>
+                            <div className='entry-types'>
+                                {expenseEntries.map((entry) => (
+                                    <div key={entry.id} className='entry-type'>
+                                        <div>
+                                            <p className='entry-name'>{entry.type}</p>
+                                            <p className='entry-date'>{entry.date}</p>
+                                        </div>
+                                        <p className='entry-amount entry-amount--expenses'>${entry.amount}</p>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </article>
                 </section>
