@@ -12,6 +12,8 @@ export const Overview = () => {
             </section>
             <section className='overview-content'>
                 <section className='overview-grid'>
+
+                    {/* quick look */}
                     <article className='overview-quick-look'>
                         <div className='overview-cards'>
                             <div className='overview-card overview-card--balance'>
@@ -33,7 +35,6 @@ export const Overview = () => {
                         <div className='overview-spending-graph'>
                             <div className='overview-spending-header'>
                                 <div className='spending-left'>
-                                    <span><FaMoneyCheckAlt className='spending-icon' /></span>
                                     <p>Daily Spending</p>
                                 </div>
                                 <div className='spending-right'>
@@ -46,22 +47,26 @@ export const Overview = () => {
                         </div>
                     </article>
 
-
-
-
-
-
+                    {/* 2 line chart */}
                     <article className='overview-spending-habits'>
                         <p><FaMoneyCheckAlt className='spending-icon' /> <span style={{ display: "inline-block", verticalAlign: "middle" }}>Spending Habits</span></p>
                     </article>
-                    <article className='overview-entries'>
-                        <p className='overview-entries-header'>Entries</p>
-                        <div className='overview-entries-table-container'>
 
-                        </div>
+
+                    {/* distribution */}
+                    <article className='overview-distribution'>
+                        <p className='overview-distribution-header'>Distribution</p>
+                        
                     </article>
-                    <article className='overview-extra'>
-                        <p>Extra</p>
+
+                    {/* entries */}
+                    <article className='overview-entries'>
+                        <div>
+                            <h2>Income</h2>
+                        </div>
+                        <div>
+                            <h2>Expenses</h2>
+                        </div>
                     </article>
                 </section>
             </section>
