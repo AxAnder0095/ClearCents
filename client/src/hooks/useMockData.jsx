@@ -34,10 +34,47 @@ export const useMockData = () => {
     const getBalanceRatio = () => {
         const totalIncome = getIncome();
         const totalExpenses = getExpenses();
-
-        // return totalIncome === 0 ? 0 : totalExpenses / totalIncome;
         return totalExpenses === 0 ? 0 : totalIncome / totalExpenses;
-    }
+    };
+
+    const getExpenseTypeTotals = () => {
+        const expenseEntries = getExpenseEntries();
+        const totals = { 
+            foodTotal: 0,
+            transportTotal: 0,
+            entertainmentTotal: 0,
+            utilitiesTotal: 0,
+            healthTotal: 0,
+            miscellaneousTotal: 0
+        };
+
+        expenseEntries.forEach(entry => {
+            switch (entry.type) {
+                case "Food":
+                    totals.foodTotal += entry.amount;
+                    break;
+                case "Transport":
+                    totals.transportTotal += entry.amount;
+                    break;
+                case "Entertainment":
+                    totals.entertainmentTotal += entry.amount;
+                    break;
+                case "Utilities":
+                    totals.utilitiesTotal += entry.amount;
+                    break;
+                case "Health":
+                    totals.healthTotal += entry.amount;
+                    break;
+                case "Miscellaneous":
+                    totals.miscellaneousTotal += entry.amount;
+                    break;
+                default:
+                    break;
+            }
+        });
+
+        return totals;
+    };
 
     return {
         getIncomeEntries,
@@ -45,6 +82,7 @@ export const useMockData = () => {
         getBalance,
         getIncome,
         getExpenses,
-        getBalanceRatio
+        getBalanceRatio,
+        getExpenseTypeTotals
     };
 }

@@ -1,6 +1,7 @@
 import '../styles/Overview.scss';
 import { SpendingBarChart } from '../components/SpendingBarChart.jsx';
 import { IncomeExpensesLineChart } from '../components/IncomeExpensesLineChart.jsx';
+import { SpendingRadarChart } from '../components/SpendingRadarChart.jsx';
 import { useMockData } from '../hooks/useMockData.jsx';
 
 
@@ -11,10 +12,31 @@ export const Overview = () => {
         getBalance,
         getIncome,
         getExpenses, 
-        getBalanceRatio
+        getBalanceRatio,
+        getExpenseTypeTotals
     } = useMockData();
     const incomeEntries = getIncomeEntries();
     const expenseEntries = getExpenseEntries();
+    const expenseTypeTotals = getExpenseTypeTotals();
+    
+    const expenseTypeEntries = [
+        { label: 'Food', amount: expenseTypeTotals.foodTotal },
+        { label: 'Transport', amount: expenseTypeTotals.transportTotal },
+        { label: 'Entertainment', amount: expenseTypeTotals.entertainmentTotal },
+        { label: 'Utilities', amount: expenseTypeTotals.utilitiesTotal },
+        { label: 'Health', amount: expenseTypeTotals.healthTotal },
+        { label: 'Other', amount: expenseTypeTotals.miscellaneousTotal },
+    ];
+    const totalDistributionSpend = expenseTypeEntries.reduce((sum, item) => sum + item.amount, 0);
+    const topExpenseCategory = expenseTypeEntries.reduce(
+        (top, item) => (item.amount > top.amount ? item : top),
+        expenseTypeEntries[0]
+    );
+    const today = new Intl.DateTimeFormat('en-US', {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric',
+    }).format(new Date());
 
     const displayIncomeEntries = () => {
         if (incomeEntries.length === 0) {
@@ -52,7 +74,14 @@ export const Overview = () => {
     return (
         <div className="Overview">
             <section className='overview-header'>
-                <h1>Overview</h1>
+                <div className='overview-header-left'>
+                    <h1>Overview</h1>
+                    <p>Your financial snapshot at a glance.</p>
+                </div>
+                <div className='overview-header-right'>
+                    <p className='overview-period'>This Month</p>
+                    <p className='overview-date'>{today}</p>
+                </div>
             </section>
             <section className='overview-content'>
                 <section className='overview-grid'>
@@ -102,8 +131,22 @@ export const Overview = () => {
 
                     {/* distribution */}
                     <article className='overview-distribution'>
-                        <p className='overview-distribution-header'>Distribution</p>
-
+                        <h2 className='overview-distribution-header'>Distribution</h2>
+                        <div className='distribution-insights'>
+                            <div className='distribution-insight'>
+                                <p className='insight-label'>Total Tracked</p>
+                                <p className='insight-value'>${totalDistributionSpend.toLocaleString()}</p>
+                            </div>
+                            <div className='distribution-insight'>
+                                <p className='insight-label'>Top Category</p>
+                                <p className='insight-value'>
+                                    {topExpenseCategory.label} (${topExpenseCategory.amount.toLocaleString()})
+                                </p>
+                            </div>
+                        </div>
+                        <div className='spending-radar-chart'>
+                            <SpendingRadarChart expenseTypeTotals={expenseTypeTotals} />
+                        </div>
                     </article>
 
                     {/* entries */}

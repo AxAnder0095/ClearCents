@@ -1,0 +1,60 @@
+.Expenses {
+    color: white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.expenses-header {
+    background-color: #19183C;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    .expenses-header-left {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        p {
+            color: rgba($color: #FFFFFF, $alpha: 0.65);
+            font-size: 0.95rem;
+        }
+    }
+
+    .expenses-header-right {
+        background-color: #323072;
+        border: 1px solid rgba($color: #FFFFFF, $alpha: 0.12);
+        border-radius: 0.75rem;
+        padding: 0.7rem 0.9rem;
+        min-width: 120px;
+        text-align: right;
+
+        .expenses-period {
+            color: rgba($color: #FFFFFF, $alpha: 0.65);
+            font-size: 0.75rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .expenses-date {
+            color: #43FFE9;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+    }
+}
+
+.expenses-content {
+    background-color: #323072;
+    flex: 1;
+    min-height: 0;
+    border-top-left-radius: 2rem;
+    padding: 2rem;
+}

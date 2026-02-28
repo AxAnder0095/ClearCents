@@ -15,6 +15,47 @@ $large-desktop: 1920px;
 .overview-header {
     background-color: #19183C;
     padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    .overview-header-left {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        p {
+            color: rgba($color: #FFFFFF, $alpha: 0.65);
+            font-size: 0.95rem;
+        }
+    }
+
+    .overview-header-right {
+        background-color: #323072;
+        border: 1px solid rgba($color: #FFFFFF, $alpha: 0.12);
+        border-radius: 0.75rem;
+        padding: 0.7rem 0.9rem;
+        min-width: 120px;
+        text-align: right;
+
+        .overview-period {
+            color: rgba($color: #FFFFFF, $alpha: 0.65);
+            font-size: 0.75rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .overview-date {
+            color: #43FFE9;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+    }
 }
 
 .overview-content {
@@ -154,12 +195,41 @@ $large-desktop: 1920px;
     overflow: hidden;
 
     .overview-distribution-header {
-        font-size: 1.5rem;
+        font-size: 2rem;
         font-weight: 600;
-        margin-bottom: 3rem;
         flex-shrink: 0;
+        margin-bottom: 1rem;
     }
 
+    .distribution-insights {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+
+        .distribution-insight {
+            background-color: #323072;
+            border-radius: 0.6rem;
+            padding: 0.6rem 0.75rem;
+
+            .insight-label {
+                font-size: 0.75rem;
+                color: rgba($color: #FFFFFF, $alpha: 0.65);
+                margin-bottom: 0.25rem;
+            }
+
+            .insight-value {
+                font-size: 0.95rem;
+                font-weight: 600;
+                color: #43FFE9;
+            }
+        }
+    }
+
+    .spending-radar-chart {
+        flex: 1;
+        min-height: 0;
+    }
 
 }
 
@@ -361,11 +431,26 @@ $large-desktop: 1920px;
 }
 
 @media (max-width: $desktop) {
+    .overview-header {
+        flex-direction: column;
+        align-items: flex-start;
+
+        .overview-header-right {
+            text-align: left;
+        }
+    }
+
     .overview-content {
         background-color: #323072;
         flex: 1;
         min-height: 0;
         overflow: hidden;
+    }
+
+    .overview-distribution {
+        .distribution-insights {
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
     }
 
     .overview-grid {
