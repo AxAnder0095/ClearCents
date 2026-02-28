@@ -2,14 +2,14 @@ export const entryMock = [
     {
         _id: 1,
         category: "Income",
-        type: "Credit",
+        type: "Dividends",
         amount: 1000,
         date: "Feb, 26, 2024"
     },
     {
         _id: 2,
         category: "Income",
-        type: "Savings",
+        type: "Miscellaneous",
         amount: 500,
         date: "Feb, 27, 2024"
     },
@@ -30,7 +30,7 @@ export const entryMock = [
     {
         _id: 5,
         category: "Income",
-        type: "Freelance",
+        type: "Miscellaneous",
         amount: 800,
         date: "Mar, 2, 2024"
     },
@@ -65,7 +65,7 @@ export const entryMock = [
     {
         _id: 10,
         category: "Expense",
-        type: "Education",
+        type: "Miscellaneous",
         amount: 400,
         date: "Mar, 7, 2024"
     },
@@ -79,14 +79,14 @@ export const entryMock = [
     {
         _id: 12,
         category: "Expense",
-        type: "Travel",
+        type: "Entertainment",
         amount: 600,
         date: "Mar, 9, 2024"
     }, 
     {
         _id: 13,
         category: "Expense",
-        type: "Shopping",
+        type: "Miscellaneous",
         amount: 350,
         date: "Mar, 10, 2024"
     },
@@ -107,7 +107,7 @@ export const entryMock = [
     {
         _id: 16,
         category: "Expense",
-        type: "Rent",
+        type: "Utilities",
         amount: 1200,
         date: "Mar, 13, 2024"
     },
@@ -121,7 +121,7 @@ export const entryMock = [
     {
         _id: 18,
         category: "Expense",
-        type: "Subscription",
+        type: "Utilities",
         amount: 50,
         date: "Mar, 15, 2024"
     },
@@ -131,5 +131,15 @@ export const entryMock = [
         type: "Miscellaneous",
         amount: 56000,
         date: "Mar, 16, 2024"
+    },
+    {
+        _id: 20,
+        category: "Income",
+        type: "Miscellaneous",
+        amount: 120000,
+        date: "Mar, 11, 2024"
     }
 ];
+
+// 6 types for Expenses: Food, Transport, Entertainment, Utilities, Health, Miscellaneous
+// 6 types for Income: Salary, Investment, Gift, Bonus, Dividends, Miscellaneous

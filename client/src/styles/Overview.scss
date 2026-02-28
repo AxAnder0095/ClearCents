@@ -43,7 +43,7 @@ $large-desktop: 1920px;
     .overview-cards {
         display: flex;
         gap: 0.75rem;
-        color: black;
+        color: white;
         flex-shrink: 0;
 
         .overview-card {
@@ -61,15 +61,18 @@ $large-desktop: 1920px;
         }
 
         .overview-card--balance {
-            background-color: #4756FF;
+            background-color: #3AFFA9;
+            color: black;
         }
 
         .overview-card--expenses {
-            background-color: #3AFFA9;
+            // background-color: #3AFFA9;
+            background-color: #19183C;
         }
 
         .overview-card--income {
-            background-color: #43FFE9;
+            // background-color: #43FFE9;
+            background-color: #19183C;
         }
     }
 
@@ -105,8 +108,8 @@ $large-desktop: 1920px;
                 gap: 0.5rem;
 
                 p {
-                    color: #FF124E;
-                    font-weight: 600;
+                    color: rgba($color: #FFFFFF, $alpha: 0.6);
+                    // font-weight: 600;
                 }
             }
 
@@ -129,10 +132,10 @@ $large-desktop: 1920px;
     overflow: hidden;
 
     .spending-habits-header {
-        font-size: 1.5rem;
+        font-size: 2rem;
         font-weight: 600;
         flex-shrink: 0;
-        margin-bottom: 4rem;
+        margin-bottom: 3rem;
     }
 
     .spending-bar-chart {
@@ -175,10 +178,10 @@ $large-desktop: 1920px;
         padding: 1.5rem;
 
         .entry-header {
-            font-size: 1.5rem;
+            font-size: 2rem;
             font-weight: 600;
             flex-shrink: 0;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
 
         .entry-types {
@@ -371,8 +374,8 @@ $large-desktop: 1920px;
         grid-template-rows: repeat(4, minmax(500px, auto));
         height: 100%;
         min-height: 0;
-        overflow-y: auto;
         gap: 0.75rem;
+        overflow-y: auto;
     }
 
     .overview-quick-look {

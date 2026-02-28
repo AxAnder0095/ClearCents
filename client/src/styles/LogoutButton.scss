@@ -1,5 +1,5 @@
 .logout-btn {
-    border: 1px solid #FF124E;
+    border: 1px solid #3AFFA9;
     background-color: transparent;
     color: white;
     font-size: 1rem;
@@ -10,6 +10,7 @@
 
     &:hover {
         transition: all 0.3s ease;
-        background-color: #FF124E;
+        background-color: #3AFFA9;
+        color: black;
     }
 }

@@ -56,7 +56,7 @@ export const SpendingBarChart = () => {
                     {spendingBarData.map((entry) => (
                         <Cell
                             key={entry.day}
-                            fill={entry.isToday ? '#FF124E' : '#4756FF'}
+                            fill={entry.isToday ? '#3AFFA9' : '#4756FF'}
                         />
                     ))}
                 </Bar>
