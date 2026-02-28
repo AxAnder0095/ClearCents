@@ -1,6 +1,6 @@
 import '../styles/Overview.scss';
 import { SpendingBarChart } from '../components/SpendingBarChart.jsx';
-import { FaMoneyCheckAlt } from "react-icons/fa";
+import { IncomeExpensesLineChart } from '../components/IncomeExpensesLineChart.jsx';
 import { useMockData } from '../hooks/useMockData.jsx';
 
 
@@ -10,7 +10,8 @@ export const Overview = () => {
         getExpenseEntries,
         getBalance,
         getIncome,
-        getExpenses
+        getExpenses, 
+        getBalanceRatio
     } = useMockData();
     const incomeEntries = getIncomeEntries();
     const expenseEntries = getExpenseEntries();
@@ -24,8 +25,7 @@ export const Overview = () => {
             <div key={entry._id} className='entry-type'>
                 <div>
                     <p className='entry-name'>{entry.type}</p>
-                    <p className='entry-date'>{entry.date}</p>
-
+                    <p className='entry-date'>{entry.date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}</p>
                 </div>
                 <p className='entry-amount entry-amount--income'>${entry.amount}</p>
             </div>
@@ -41,7 +41,7 @@ export const Overview = () => {
             <div key={entry._id} className='entry-type'>
                 <div>
                     <p className='entry-name'>{entry.type}</p>
-                    <p className='entry-date'>{entry.date}</p>
+                    <p className='entry-date'>{entry.date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}</p>
 
                 </div>
                 <p className='entry-amount entry-amount--expenses'>${entry.amount}</p>
@@ -63,7 +63,7 @@ export const Overview = () => {
                             <div className='overview-card overview-card--balance'>
                                 <p className='card-header'>Total Balance</p>
                                 <p className='card-value'>${getBalance()}</p>
-                                <p className='card-change'>+5% from last month</p>
+                                <p className='card-change'>{`${getBalanceRatio().toFixed(2)}% remaining`}</p>
                             </div>
                             <div className='overview-card overview-card--income'>
                                 <p className='card-header'>Total Income</p>
@@ -85,8 +85,8 @@ export const Overview = () => {
                                     <p>Add an Expense</p>
                                 </div>
                             </div>
-                            <div className='overview-spending-bar-chart'>
-                                <SpendingBarChart />
+                            <div className='overview-spending-line-chart'>
+                                <IncomeExpensesLineChart />
                             </div>
                         </div>
                     </article>

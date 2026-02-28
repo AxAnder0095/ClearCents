@@ -1,145 +1,53 @@
-export const entryMock = [
-    {
-        _id: 1,
-        category: "Income",
-        type: "Dividends",
-        amount: 1000,
-        date: "Feb, 26, 2024"
-    },
-    {
-        _id: 2,
-        category: "Income",
-        type: "Miscellaneous",
-        amount: 500,
-        date: "Feb, 27, 2024"
-    },
-    {
-        _id: 3,
-        category: "Expense",
-        type: "Food",
-        amount: 200,
-        date: "Feb, 28, 2024"
-    },
-    {
-        _id: 4,
-        category: "Expense",
-        type: "Transport",
-        amount: 150,
-        date: "Mar, 1, 2024"
-    },
-    {
-        _id: 5,
-        category: "Income",
-        type: "Miscellaneous",
-        amount: 800,
-        date: "Mar, 2, 2024"
-    },
-    {
-        _id: 6,
-        category: "Expense",
-        type: "Entertainment",
-        amount: 100,
-        date: "Mar, 3, 2024"
-    },
-    {
-        _id: 7,
-        category: "Expense",
-        type: "Utilities",
-        amount: 300,
-        date: "Mar, 4, 2024"
-    },
-    {
-        _id: 8,
-        category: "Income",
-        type: "Investment",
-        amount: 1200,
-        date: "Mar, 5, 2024"
-    },
-    {
-        _id: 9,
-        category: "Expense",
-        type: "Health",
-        amount: 250,
-        date: "Mar, 6, 2024"
-    },
-    {
-        _id: 10,
-        category: "Expense",
-        type: "Miscellaneous",
-        amount: 400,
-        date: "Mar, 7, 2024"
-    },
-    {
-        _id: 11,
-        category: "Income",
-        type: "Gift",
-        amount: 300,
-        date: "Mar, 8, 2024"
-    },
-    {
-        _id: 12,
-        category: "Expense",
-        type: "Entertainment",
-        amount: 600,
-        date: "Mar, 9, 2024"
-    }, 
-    {
-        _id: 13,
-        category: "Expense",
-        type: "Miscellaneous",
-        amount: 350,
-        date: "Mar, 10, 2024"
-    },
-    {
-        _id: 14,
-        category: "Income",
-        type: "Bonus",
-        amount: 1500,
-        date: "Mar, 11, 2024"
-    },
-    {
-        _id: 15,
-        category: "Income",
-        type: "Salary",
-        amount: 3000,
-        date: "Mar, 12, 2024"
-    },
-    {
-        _id: 16,
-        category: "Expense",
-        type: "Utilities",
-        amount: 1200,
-        date: "Mar, 13, 2024"
-    },
-    {
-        _id: 17,
-        category: "Income",
-        type: "Dividends",
-        amount: 400,
-        date: "Mar, 14, 2024"
-    },
-    {
-        _id: 18,
-        category: "Expense",
-        type: "Utilities",
-        amount: 50,
-        date: "Mar, 15, 2024"
-    },
-    {
-        _id: 19,
-        category: "Expense",
-        type: "Miscellaneous",
-        amount: 56000,
-        date: "Mar, 16, 2024"
-    },
-    {
-        _id: 20,
-        category: "Income",
-        type: "Miscellaneous",
-        amount: 120000,
-        date: "Mar, 11, 2024"
-    }
-];
-
 // 6 types for Expenses: Food, Transport, Entertainment, Utilities, Health, Miscellaneous
 // 6 types for Income: Salary, Investment, Gift, Bonus, Dividends, Miscellaneous
+
+// use this for when you are using real data. will show mon, tue, wed, etc. instead of the date
+// const isoString = "2026-02-24T22:25:36.712+00:00";
+// const date = new Date(isoString);
+
+// const weekday = date.toLocaleDateString("en-US", { weekday: "short" });
+// console.log(weekday); // "Tue"
+
+export const entryMock = [
+  { _id: 1, category: "Income", type: "Dividends", amount: 1000, date: new Date("2026-02-28T10:00:00.000+00:00") },
+  { _id: 2, category: "Income", type: "Miscellaneous", amount: 500, date: new Date("2026-02-27T10:00:00.000+00:00") },
+  { _id: 3, category: "Expense", type: "Food", amount: 200, date: new Date("2026-02-28T10:00:00.000+00:00") },
+  { _id: 4, category: "Expense", type: "Transport", amount: 150, date: new Date("2026-02-25T10:00:00.000+00:00") },
+  { _id: 5, category: "Income", type: "Miscellaneous", amount: 800, date: new Date("2026-02-24T10:00:00.000+00:00") },
+  { _id: 6, category: "Expense", type: "Entertainment", amount: 100, date: new Date("2026-02-23T10:00:00.000+00:00") },
+  { _id: 7, category: "Expense", type: "Utilities", amount: 300, date: new Date("2026-02-22T10:00:00.000+00:00") },
+  { _id: 8, category: "Income", type: "Investment", amount: 1200, date: new Date("2026-02-21T10:00:00.000+00:00") },
+  { _id: 9, category: "Expense", type: "Health", amount: 250, date: new Date("2026-02-20T10:00:00.000+00:00") },
+  { _id: 10, category: "Expense", type: "Miscellaneous", amount: 400, date: new Date("2026-02-19T10:00:00.000+00:00") },
+  { _id: 11, category: "Income", type: "Gift", amount: 300, date: new Date("2026-02-18T10:00:00.000+00:00") },
+  { _id: 12, category: "Expense", type: "Entertainment", amount: 600, date: new Date("2026-02-17T10:00:00.000+00:00") },
+  { _id: 13, category: "Expense", type: "Miscellaneous", amount: 350, date: new Date("2026-02-16T10:00:00.000+00:00") },
+  { _id: 14, category: "Income", type: "Bonus", amount: 1500, date: new Date("2026-02-15T10:00:00.000+00:00") },
+  { _id: 15, category: "Income", type: "Salary", amount: 3000, date: new Date("2026-02-14T10:00:00.000+00:00") },
+  { _id: 16, category: "Expense", type: "Utilities", amount: 1200, date: new Date("2026-02-13T10:00:00.000+00:00") },
+  { _id: 17, category: "Income", type: "Dividends", amount: 400, date: new Date("2026-02-12T10:00:00.000+00:00") },
+  { _id: 18, category: "Expense", type: "Utilities", amount: 50, date: new Date("2026-02-11T10:00:00.000+00:00") },
+  { _id: 19, category: "Expense", type: "Miscellaneous", amount: 560, date: new Date("2026-02-10T10:00:00.000+00:00") },
+  { _id: 20, category: "Income", type: "Miscellaneous", amount: 1200, date: new Date("2026-02-09T10:00:00.000+00:00") },
+
+  { _id: 21, category: "Expense", type: "Food", amount: 75, date: new Date("2026-02-08T10:00:00.000+00:00") },
+  { _id: 22, category: "Expense", type: "Transport", amount: 220, date: new Date("2026-02-07T10:00:00.000+00:00") },
+  { _id: 23, category: "Expense", type: "Health", amount: 180, date: new Date("2026-02-06T10:00:00.000+00:00") },
+  { _id: 24, category: "Expense", type: "Entertainment", amount: 320, date: new Date("2026-02-05T10:00:00.000+00:00") },
+  { _id: 25, category: "Expense", type: "Utilities", amount: 410, date: new Date("2026-02-04T10:00:00.000+00:00") },
+  { _id: 26, category: "Expense", type: "Food", amount: 95, date: new Date("2026-02-03T10:00:00.000+00:00") },
+  { _id: 27, category: "Expense", type: "Transport", amount: 140, date: new Date("2026-02-02T10:00:00.000+00:00") },
+  { _id: 28, category: "Expense", type: "Miscellaneous", amount: 260, date: new Date("2026-02-01T10:00:00.000+00:00") },
+  { _id: 29, category: "Expense", type: "Health", amount: 600, date: new Date("2026-01-31T10:00:00.000+00:00") },
+  { _id: 30, category: "Expense", type: "Entertainment", amount: 150, date: new Date("2026-01-30T10:00:00.000+00:00") },
+  { _id: 31, category: "Expense", type: "Utilities", amount: 500, date: new Date("2026-01-29T10:00:00.000+00:00") },
+  { _id: 32, category: "Expense", type: "Food", amount: 130, date: new Date("2026-01-28T10:00:00.000+00:00") },
+  { _id: 33, category: "Expense", type: "Transport", amount: 175, date: new Date("2026-01-27T10:00:00.000+00:00") },
+  { _id: 34, category: "Expense", type: "Health", amount: 240, date: new Date("2026-01-26T10:00:00.000+00:00") },
+  { _id: 35, category: "Expense", type: "Miscellaneous", amount: 390, date: new Date("2026-01-25T10:00:00.000+00:00") },
+  { _id: 36, category: "Expense", type: "Food", amount: 85, date: new Date("2026-01-24T10:00:00.000+00:00") },
+  { _id: 37, category: "Expense", type: "Utilities", amount: 720, date: new Date("2026-01-23T10:00:00.000+00:00") },
+  { _id: 38, category: "Expense", type: "Entertainment", amount: 210, date: new Date("2026-01-22T10:00:00.000+00:00") },
+  { _id: 39, category: "Expense", type: "Transport", amount: 160, date: new Date("2026-01-21T10:00:00.000+00:00") },
+  { _id: 40, category: "Expense", type: "Miscellaneous", amount: 275, date: new Date("2026-01-20T10:00:00.000+00:00") }
+];

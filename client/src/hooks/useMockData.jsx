@@ -3,12 +3,12 @@ import { entryMock } from "../mocks/entry.mock.js"
 export const useMockData = () => {
     const getIncomeEntries = () => {
         const incomeEntries = entryMock.filter(entry => entry.category === "Income")
-        return incomeEntries.reverse()
+        return incomeEntries
     };
 
     const getExpenseEntries = () => {
         const expenseEntries = entryMock.filter(entry => entry.category === "Expense")
-        return expenseEntries.reverse()
+        return expenseEntries
     };
 
     const getBalance = () => {
@@ -31,11 +31,20 @@ export const useMockData = () => {
         return totalExpenses;
     };
 
+    const getBalanceRatio = () => {
+        const totalIncome = getIncome();
+        const totalExpenses = getExpenses();
+
+        // return totalIncome === 0 ? 0 : totalExpenses / totalIncome;
+        return totalExpenses === 0 ? 0 : totalIncome / totalExpenses;
+    }
+
     return {
         getIncomeEntries,
         getExpenseEntries,
         getBalance,
         getIncome,
-        getExpenses
+        getExpenses,
+        getBalanceRatio
     };
 }

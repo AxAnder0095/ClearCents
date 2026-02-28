@@ -4,15 +4,14 @@ import {
     getSevenDayWindowFromEntries,
 } from './chartData.utils.js';
 
-export const getSampleSevenDaySpendingData = () => {
+export const getSampleSevenDayIncomeExpenseData = () => {
     const sevenDayWindow = getSevenDayWindowFromEntries();
     const baseData = buildSevenDayBaseData(sevenDayWindow);
     const totalsByDate = buildSevenDayTotalsByDate(undefined, sevenDayWindow);
 
     return baseData.map((dayPoint) => ({
         day: dayPoint.day,
-        dateLabel: dayPoint.dateLabel,
-        amount: totalsByDate[dayPoint.dateKey]?.expenses ?? 0,
-        isToday: dayPoint.isToday,
+        income: totalsByDate[dayPoint.dateKey]?.income ?? 0,
+        expenses: totalsByDate[dayPoint.dateKey]?.expenses ?? 0,
     }));
 };
