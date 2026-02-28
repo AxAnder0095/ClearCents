@@ -15,6 +15,40 @@ export const Overview = () => {
     const incomeEntries = getIncomeEntries();
     const expenseEntries = getExpenseEntries();
 
+    const displayIncomeEntries = () => {
+        if (incomeEntries.length === 0) {
+            return <p>No income entries found.</p>;
+        }
+
+        return incomeEntries.map((entry) => (
+            <div key={entry._id} className='entry-type'>
+                <div>
+                    <p className='entry-name'>{entry.type}</p>
+                    <p className='entry-date'>{entry.date}</p>
+
+                </div>
+                <p className='entry-amount entry-amount--income'>${entry.amount}</p>
+            </div>
+        ));
+    };
+
+    const displayExpenseEntries = () => {
+        if (expenseEntries.length === 0) {
+            return <p>No expense entries found.</p>;
+        }
+
+        return expenseEntries.map((entry) => (
+            <div key={entry._id} className='entry-type'>
+                <div>
+                    <p className='entry-name'>{entry.type}</p>
+                    <p className='entry-date'>{entry.date}</p>
+
+                </div>
+                <p className='entry-amount entry-amount--expenses'>${entry.amount}</p>
+            </div>
+        ));
+    };
+
     return (
         <div className="Overview">
             <section className='overview-header'>
@@ -77,30 +111,13 @@ export const Overview = () => {
                         <div className='entry-box'>
                             <h2 className='entry-header'>Income</h2>
                             <div className='entry-types'>
-                                {incomeEntries.map((entry) => (
-                                    <div key={entry.id} className='entry-type'>
-                                        <div>
-                                            <p className='entry-name'>{entry.type}</p>
-                                            <p className='entry-date'>{entry.date}</p>
-
-                                        </div>
-                                        <p className='entry-amount entry-amount--income'>${entry.amount}</p>
-                                    </div>
-                                ))}
+                                {displayIncomeEntries()}
                             </div>
                         </div>
                         <div className='entry-box'>
                             <h2 className='entry-header'>Expenses</h2>
                             <div className='entry-types'>
-                                {expenseEntries.map((entry) => (
-                                    <div key={entry.id} className='entry-type'>
-                                        <div>
-                                            <p className='entry-name'>{entry.type}</p>
-                                            <p className='entry-date'>{entry.date}</p>
-                                        </div>
-                                        <p className='entry-amount entry-amount--expenses'>${entry.amount}</p>
-                                    </div>
-                                ))}
+                                {displayExpenseEntries()}
                             </div>
                         </div>
                     </article>

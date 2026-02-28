@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
 
 const transactionSchema = new mongoose.Schema({
-    type: {
+    category: {
         type: String,
         enum: ['income', 'expense'],
-        required: [true, 'Transaction type is required']
+        required: [true, 'Transaction category is required']
     },
-    source: {
+    type: {
         type: String,
         required: [true, 'Source is required']
     },
@@ -29,7 +29,7 @@ const transactionSchema = new mongoose.Schema({
     }
 }, {timestamps: true});
 
-transactionSchema.index({ auth0Sub: 1, date: -1 });
+transactionSchema.index({ auth0Sub: 1, date: -1 }); // Compound index for efficient querying by user and date
 
 const Transaction = mongoose.model("Transaction", transactionSchema);
 

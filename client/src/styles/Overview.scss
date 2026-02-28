@@ -2,6 +2,7 @@ $mobile-screen: 600px;
 $tablet: 767px;
 $small-screen: 1024px;
 $desktop: 1200px;
+$large-screen: 1440px;
 $large-desktop: 1920px;
 
 .Overview {
@@ -17,13 +18,11 @@ $large-desktop: 1920px;
 }
 
 .overview-content {
-    // background-color: #1F1E4A;
     background-color: #323072;
     flex: 1;
     min-height: 0;
     border-top-left-radius: 2rem;
     padding: 2rem;
-    // border: 1px solid white;
 }
 
 .overview-grid {
@@ -243,7 +242,7 @@ $large-desktop: 1920px;
 
                 .entry-amount--income {
                     background-color: #C0FFC0;
-                    color: #00AF00;
+                    color: #007700;
 
                     &:hover {
                         background-color: #00AF00;
@@ -274,6 +273,143 @@ $large-desktop: 1920px;
             .overview-card {
                 .card-value {
                     font-size: 2rem;
+                }
+            }
+        }
+    }
+
+    .overview-entries {
+        .entry-box {
+            .entry-header {
+                font-size: 1.5rem;
+                font-weight: 600;
+            }
+
+            .entry-types {
+                .entry-type {
+                    div {
+                        .entry-name {
+                            font-size: 1rem;
+                            font-weight: 600;
+                        }
+
+                        .entry-date {
+                            font-size: 0.875rem;
+                        }
+                    }
+
+                    .entry-amount {
+                        font-size: 0.875rem;
+                        padding: 0.75rem;
+                        width: 70px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: $large-screen) {
+    .overview-quick-look {
+        .overview-cards {
+            .overview-card {
+                .card-value {
+                    font-size: 1.8rem;
+                }
+                .card-header {
+                    font-size: 0.8rem;
+                }
+                .card-change {
+                    font-size: 0.8rem;
+                }
+            }
+        }
+    }
+
+    .overview-entries {
+        .entry-box {
+            .entry-header {
+                font-size: 1.4rem;
+                font-weight: 600;
+            }
+
+            .entry-types {
+                .entry-type {
+                    div {
+                        .entry-name {
+                            font-size: 1rem;
+                            font-weight: 600;
+                        }
+
+                        .entry-date {
+                            font-size: 0.875rem;
+                        }
+                    }
+
+                    .entry-amount {
+                        font-size: 0.875rem;
+                        padding: 0.75rem;
+                        width: 70px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: $desktop) {
+    .overview-content {
+        background-color: #323072;
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    .overview-grid {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        grid-template-rows: repeat(4, minmax(500px, auto));
+        height: 100%;
+        min-height: 0;
+        overflow-y: auto;
+        gap: 0.75rem;
+    }
+
+    .overview-quick-look {
+        .overview-cards {
+            .overview-card {
+                .card-value {
+                    font-size: 2rem;
+                }
+            }
+        }
+    }
+
+    .overview-entries {
+        .entry-box {
+            .entry-header {
+                font-size: 1.5rem;
+                font-weight: 600;
+            }
+
+            .entry-types {
+                .entry-type {
+                    div {
+                        .entry-name {
+                            font-size: 1.2rem;
+                            font-weight: 600;
+                        }
+
+                        .entry-date {
+                            font-size: 0.875rem;
+                        }
+                    }
+
+                    .entry-amount {
+                        font-size: 0.875rem;
+                        padding: 0.75rem;
+                        width: 80px;
+                    }
                 }
             }
         }
