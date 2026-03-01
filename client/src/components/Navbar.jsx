@@ -9,11 +9,11 @@ export const Navbar = () => {
     return (
         <nav className='Navbar'>
             <div className='navbar-top'>
-                <h1 className='navbar-logo'>ClearCents</h1>
+                <p className='navbar-logo'>ClearCents</p>
                 <div className='navbar-links'>
-                    <NavLink end to="/dashboard" className={({isActive}) => isActive ? 'link active' : 'link'}><MdDashboard /><span>Overview</span></NavLink>
-                    <NavLink to="/dashboard/income" className={({isActive}) => isActive ? 'link active' : 'link'}><FaMoneyCheckAlt /><span>Income</span></NavLink>
-                    <NavLink to="/dashboard/expenses" className={({isActive}) => isActive ? 'link active' : 'link'}><FaMoneyCheck /><span>Expenses</span></NavLink>
+                    <NavLink end to="/dashboard" className={({isActive}) => isActive ? 'link active' : 'link'}><MdDashboard /><span className='link-title'>Overview</span></NavLink>
+                    <NavLink to="/dashboard/income" className={({isActive}) => isActive ? 'link active' : 'link'}><FaMoneyCheckAlt /><span className='link-title'>Income</span></NavLink>
+                    <NavLink to="/dashboard/expenses" className={({isActive}) => isActive ? 'link active' : 'link'}><FaMoneyCheck /><span className='link-title'>Expenses</span></NavLink>
                     {/* <NavLink to="/dashboard/test" className={({isActive}) => isActive ? 'link active' : 'link'}>Test Page</NavLink> */}
                 </div>
             </div>

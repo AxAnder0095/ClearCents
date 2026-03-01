@@ -1,3 +1,10 @@
+$mobile-screen: 600px;
+$tablet: 767px;
+$small-screen: 1024px;
+$desktop: 1200px;
+$large-screen: 1440px;
+$large-desktop: 1920px;
+
 .Navbar {
     color: white;
     padding: 2rem 1.5rem;
@@ -54,4 +61,41 @@
 .navbar-bottom {
     display: flex;
     justify-content: center;
+}
+
+
+
+@media (max-width: $large-desktop) {
+    .navbar-logo {
+        font-size: 1.6rem;
+    }
+
+    .link {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: $large-screen) {
+    .navbar-logo {
+        font-size: 1.4rem;
+    }
+
+    .link {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: $desktop) {
+    .navbar-logo {
+        font-size: 1.4rem;
+    }
+
+    .link {
+        font-size: 2.5rem;
+        justify-content: center;
+
+        .link-title {
+            display: none;
+        }
+    }
 }

@@ -431,14 +431,14 @@ $large-desktop: 1920px;
 }
 
 @media (max-width: $desktop) {
-    .overview-header {
-        flex-direction: column;
-        align-items: flex-start;
+    // .overview-header {
+    //     flex-direction: column;
+    //     align-items: flex-start;
 
-        .overview-header-right {
-            text-align: left;
-        }
-    }
+    //     .overview-header-right {
+    //         text-align: left;
+    //     }
+    // }
 
     .overview-content {
         background-color: #323072;
