@@ -3,6 +3,7 @@ import { SpendingBarChart } from '../components/SpendingBarChart.jsx';
 import { IncomeExpensesLineChart } from '../components/IncomeExpensesLineChart.jsx';
 import { SpendingRadarChart } from '../components/SpendingRadarChart.jsx';
 import { useMockData } from '../hooks/useMockData.jsx';
+import { useUserTransactions } from '../hooks/useUserTransactions.jsx';
 
 
 export const Overview = () => {
@@ -15,8 +16,9 @@ export const Overview = () => {
         getBalanceRatio,
         getExpenseTypeTotals
     } = useMockData();
-    const incomeEntries = getIncomeEntries();
-    const expenseEntries = getExpenseEntries();
+    const transactions = useUserTransactions();
+    const incomeEntries = getIncomeEntries().reverse(); // Reverse to show most recent first
+    const expenseEntries = getExpenseEntries().reverse(); // Reverse to show most recent first
     const expenseTypeTotals = getExpenseTypeTotals();
     
     const expenseTypeEntries = [

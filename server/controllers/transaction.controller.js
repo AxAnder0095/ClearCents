@@ -9,9 +9,19 @@ export const getTransactions = async (req, res) => {
         if (!auth0Sub) {
             return res.status(401).json({ message: 'Unauthorized' });
         }
-
-        const transactions = await Transaction.find({ auth0Sub }).sort({ date: -1 });
-        return res.json(transactions);
+        
+        // const transactions = await Transaction.find({ auth0Sub }).sort({ date: -1 });
+        const mockTransactions = [
+            {
+                _id: "1",
+                amount: 1000,
+                category: "Income",
+                type: "Salary",
+                date: new Date(),
+                description: "Monthly salary",
+            }]
+            
+        return res.json(mockTransactions);
     } catch (error) {
         return res.status(500).json({ message: 'Failed to fetch transactions' });
     }

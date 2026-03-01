@@ -389,9 +389,11 @@ $large-desktop: 1920px;
                 .card-value {
                     font-size: 1.8rem;
                 }
+
                 .card-header {
                     font-size: 0.8rem;
                 }
+
                 .card-change {
                     font-size: 0.8rem;
                 }
@@ -431,15 +433,6 @@ $large-desktop: 1920px;
 }
 
 @media (max-width: $desktop) {
-    // .overview-header {
-    //     flex-direction: column;
-    //     align-items: flex-start;
-
-    //     .overview-header-right {
-    //         text-align: left;
-    //     }
-    // }
-
     .overview-content {
         background-color: #323072;
         flex: 1;
@@ -460,7 +453,24 @@ $large-desktop: 1920px;
         height: 100%;
         min-height: 0;
         gap: 0.75rem;
+        // overflow-y: auto;
+
         overflow-y: auto;
+        padding-right: 0.5rem;
+        scrollbar-gutter: stable;
+
+        &::-webkit-scrollbar {
+            width: 0.5rem;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #3AFFA9;
+            border-radius: 10px;
+        }
     }
 
     .overview-quick-look {
