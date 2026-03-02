@@ -7,7 +7,12 @@ import {
     XAxis,
     YAxis,
 } from 'recharts';
-import { getSampleSevenDayIncomeExpenseData } from '../mocks/incomeExpensesLineChart.mock.js';
+import { useMemo } from 'react';
+import {
+    buildSevenDayBaseData,
+    buildSevenDayTotalsByDate,
+    getSevenDayWindowFromEntries,
+} from '../utils/chartData.user.utils.js';
 
 const formatAxisTick = (value) => {
     if (value >= 1000) {
@@ -22,8 +27,18 @@ const formatTooltipValue = (value, name) => {
     return [`$${Number(value).toLocaleString()}`, label];
 };
 
-export const IncomeExpensesLineChart = () => {
-    const lineData = getSampleSevenDayIncomeExpenseData();
+export const IncomeExpensesLineChart = ({ transactions = [] }) => {
+    const lineData = useMemo(() => {
+        const sevenDayWindow = getSevenDayWindowFromEntries(transactions);
+        const baseData = buildSevenDayBaseData(sevenDayWindow);
+        const totalsByDate = buildSevenDayTotalsByDate(transactions, sevenDayWindow);
+
+        return baseData.map((dayPoint) => ({
+            day: dayPoint.day,
+            income: totalsByDate[dayPoint.dateKey]?.income ?? 0,
+            expenses: totalsByDate[dayPoint.dateKey]?.expenses ?? 0,
+        }));
+    }, [transactions]);
 
     return (
         <ResponsiveContainer width='100%' height='100%'>

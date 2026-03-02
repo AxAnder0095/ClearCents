@@ -18,36 +18,6 @@ export const getTransactions = async (req, res) => {
     }
 };
 
-export const getExpenseTransactions = async (req, res) => {
-    try {
-        const auth0Sub = getAuth0Sub(req);
-        if (!auth0Sub) {
-            return res.status(401).json({ message: 'Unauthorized' });
-        }
-
-        const expenseTransactions = await Transaction.find({ auth0Sub, category: 'Expense' }).sort({ date: -1 });
-
-        return res.json(expenseTransactions);
-    } catch (error) {
-        return res.status(500).json({ message: 'Failed to fetch expense transactions' });
-    }
-};
-
-export const getIncomeTransactions = async (req, res) => {
-    try {
-        const auth0Sub = getAuth0Sub(req);
-        if (!auth0Sub) {
-            return res.status(401).json({ message: 'Unauthorized' });
-        }
-
-        const incomeTransactions = await Transaction.find({ auth0Sub, category: 'Income' }).sort({ date: -1 });
-
-        return res.json(incomeTransactions);
-    } catch (error) {
-        return res.status(500).json({ message: 'Failed to fetch income transactions' });
-    }
-};
-
 export const createTransaction = async (req, res) => {
     try {
         const auth0Sub = getAuth0Sub(req);

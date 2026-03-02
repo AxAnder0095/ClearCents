@@ -2,25 +2,25 @@ import '../styles/Overview.scss';
 import { SpendingBarChart } from '../components/SpendingBarChart.jsx';
 import { IncomeExpensesLineChart } from '../components/IncomeExpensesLineChart.jsx';
 import { SpendingRadarChart } from '../components/SpendingRadarChart.jsx';
-import { useMockData } from '../hooks/useMockData.jsx';
 import { useUserTransactions } from '../hooks/useUserTransactions.jsx';
-
+import { GiReceiveMoney } from "react-icons/gi";
+import { GiPayMoney } from "react-icons/gi";
 
 export const Overview = () => {
     const {
-        getIncomeEntries,
-        getExpenseEntries,
+        transactions,
         getBalance,
-        getIncome,
-        getExpenses, 
-        getBalanceRatio,
+        getExpensesTotal,
+        getIncomeTotal,
+        getExpenseTransactions,
+        getIncomeTransactions,
         getExpenseTypeTotals
-    } = useMockData();
-    const { transactions} = useUserTransactions();
-    const incomeEntries = getIncomeEntries().reverse(); // Reverse to show most recent first
-    const expenseEntries = getExpenseEntries().reverse(); // Reverse to show most recent first
+    } = useUserTransactions();
+
+    const incomeEntries = getIncomeTransactions(); // Reverse to show most recent first
+    const expenseEntries = getExpenseTransactions(); // Reverse to show most recent first
     const expenseTypeTotals = getExpenseTypeTotals();
-    
+
     const expenseTypeEntries = [
         { label: 'Food', amount: expenseTypeTotals.foodTotal },
         { label: 'Transport', amount: expenseTypeTotals.transportTotal },
@@ -40,6 +40,20 @@ export const Overview = () => {
         day: 'numeric',
     }).format(new Date());
 
+    const formatEntryDate = (value) => {
+        const parsedDate = new Date(value);
+
+        if (Number.isNaN(parsedDate.getTime())) {
+            return 'Invalid date';
+        }
+
+        return parsedDate.toLocaleDateString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        });
+    };
+
     const displayIncomeEntries = () => {
         if (incomeEntries.length === 0) {
             return <p>No income entries found.</p>;
@@ -49,7 +63,7 @@ export const Overview = () => {
             <div key={entry._id} className='entry-type'>
                 <div>
                     <p className='entry-name'>{entry.type}</p>
-                    <p className='entry-date'>{entry.date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}</p>
+                    <p className='entry-date'>{formatEntryDate(entry.createdAt)}</p>
                 </div>
                 <p className='entry-amount entry-amount--income'>${entry.amount}</p>
             </div>
@@ -65,8 +79,7 @@ export const Overview = () => {
             <div key={entry._id} className='entry-type'>
                 <div>
                     <p className='entry-name'>{entry.type}</p>
-                    <p className='entry-date'>{entry.date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}</p>
-
+                    <p className='entry-date'>{formatEntryDate(entry.createdAt)}</p>
                 </div>
                 <p className='entry-amount entry-amount--expenses'>${entry.amount}</p>
             </div>
@@ -93,18 +106,18 @@ export const Overview = () => {
                         <div className='overview-cards'>
                             <div className='overview-card overview-card--balance'>
                                 <p className='card-header'>Total Balance</p>
-                                <p className='card-value'>${getBalance()}</p>
-                                <p className='card-change'>{`${getBalanceRatio().toFixed(2)}% remaining`}</p>
+                                <p className='card-value'>${getBalance ? getBalance() : 0}</p>
+                                <p className='card-change'>{getIncomeTotal && getExpensesTotal ? `${((getExpensesTotal() / getIncomeTotal()) * 100).toFixed(2)}% utilization` : '0% remaining'}</p>
                             </div>
                             <div className='overview-card overview-card--income'>
                                 <p className='card-header'>Total Income</p>
-                                <p className='card-value'>${getIncome()}</p>
-                                <p className='card-change'>+5% from last month</p>
+                                <p className='card-value'>${getIncomeTotal ? getIncomeTotal() : 0}</p>
+                                <p className='card-change'><GiReceiveMoney size={20} /></p>
                             </div>
                             <div className='overview-card overview-card--expenses'>
                                 <p className='card-header'>Total Expenses</p>
-                                <p className='card-value'>${getExpenses()}</p>
-                                <p className='card-change'>+5% from last month</p>
+                                <p className='card-value'>${getExpensesTotal ? getExpensesTotal() : 0}</p>
+                                <p className='card-change'><GiPayMoney size={20} /></p>
                             </div>
                         </div>
                         <div className='overview-spending-graph'>
@@ -117,7 +130,7 @@ export const Overview = () => {
                                 </div>
                             </div>
                             <div className='overview-spending-line-chart'>
-                                <IncomeExpensesLineChart />
+                                <IncomeExpensesLineChart transactions={transactions} />
                             </div>
                         </div>
                     </article>
@@ -126,7 +139,7 @@ export const Overview = () => {
                     <article className='overview-spending-habits'>
                         <h2 className='spending-habits-header'>Spending Habits</h2>
                         <div className='spending-bar-chart'>
-                            <SpendingBarChart />
+                            <SpendingBarChart transactions={transactions} />
                         </div>
                     </article>
 
@@ -137,7 +150,7 @@ export const Overview = () => {
                         <div className='distribution-insights'>
                             <div className='distribution-insight'>
                                 <p className='insight-label'>Total Tracked</p>
-                                <p className='insight-value'>${totalDistributionSpend.toLocaleString()}</p>
+                                <p className='insight-value'>${expenseTypeTotals ? totalDistributionSpend.toLocaleString() : 0}</p>
                             </div>
                             <div className='distribution-insight'>
                                 <p className='insight-label'>Top Category</p>
@@ -156,13 +169,13 @@ export const Overview = () => {
                         <div className='entry-box'>
                             <h2 className='entry-header'>Income</h2>
                             <div className='entry-types'>
-                                {displayIncomeEntries()}
+                                {incomeEntries ? displayIncomeEntries() : <p>No income entries found.</p>}
                             </div>
                         </div>
                         <div className='entry-box'>
                             <h2 className='entry-header'>Expenses</h2>
                             <div className='entry-types'>
-                                {displayExpenseEntries()}
+                                {expenseEntries ? displayExpenseEntries() : <p>No expense entries found.</p>}
                             </div>
                         </div>
                     </article>

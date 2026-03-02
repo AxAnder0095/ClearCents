@@ -8,7 +8,12 @@ import {
     XAxis,
     YAxis,
 } from 'recharts';
-import { getSampleSevenDaySpendingData } from '../mocks/spendingBarChart.mock.js';
+import { useMemo } from 'react';
+import {
+    buildSevenDayBaseData,
+    buildSevenDayTotalsByDate,
+    getSevenDayWindowFromEntries,
+} from '../utils/chartData.user.utils.js';
 
 const formatSpendingTick = (value) => {
     if (value >= 1000) {
@@ -32,8 +37,19 @@ const formatSpendingLabel = (day, payload) => {
         : `${point.day} • ${point.dateLabel}`;
 };
 
-export const SpendingBarChart = () => {
-    const spendingBarData = getSampleSevenDaySpendingData();
+export const SpendingBarChart = ({ transactions = [] }) => {
+    const spendingBarData = useMemo(() => {
+        const sevenDayWindow = getSevenDayWindowFromEntries(transactions);
+        const baseData = buildSevenDayBaseData(sevenDayWindow);
+        const totalsByDate = buildSevenDayTotalsByDate(transactions, sevenDayWindow);
+
+        return baseData.map((dayPoint) => ({
+            day: dayPoint.day,
+            dateLabel: dayPoint.dateLabel,
+            amount: totalsByDate[dayPoint.dateKey]?.expenses ?? 0,
+            isToday: dayPoint.isToday,
+        }));
+    }, [transactions]);
 
     return (
         <ResponsiveContainer width='100%' height='100%'>

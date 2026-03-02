@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { api } from "../api/api.js"
-// import { set } from "mongoose";
 
 export const useUserTransactions = () => {
     const { getAccessTokenSilently } = useAuth0();
@@ -27,40 +26,82 @@ export const useUserTransactions = () => {
         }
     };
 
-    const getExpenseTransactions = async () => {
-        try {
-            const token = await getAccessTokenSilently({
-                authorizationParams: {
-                    audience: import.meta.env.VITE_AUTH0_AUDIENCE,
-                }
-            });
-            const response = await api.get("/transactions/expenses", {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            setExpenseTransactions(response.data);
-        } catch (error) {
-            console.error("Error fetching expense transactions:", error);
-        }
+    const getExpenseTransactions = () => {
+        if (transactions.length === 0) return [];
+
+        return transactions
+            .filter((transaction) => transaction.category === "Expense")
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     };
 
-    const getIncomeTransactions = async () => {
-        try {
-            const token = await getAccessTokenSilently({
-                authorizationParams: {
-                    audience: import.meta.env.VITE_AUTH0_AUDIENCE,
-                }
-            });
-            const response = await api.get("/transactions/income", {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            setIncomeTransactions(response.data);
-        } catch (error) {
-            console.error("Error fetching income transactions:", error);
-        }
+    const getIncomeTransactions = () => {
+        if (transactions.length === 0) return [];
+
+        return transactions
+            .filter((transaction) => transaction.category === "Income")
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    };
+
+    const getExpensesTotal = () => {
+        if (transactions.length === 0) return 0;
+        const expenseTransactions = transactions.filter(transaction => transaction.category === "Expense");
+        return expenseTransactions.reduce((total, transaction) => total + transaction.amount, 0);
+    };
+
+    const getIncomeTotal = () => {
+        if (transactions.length === 0) return 0;
+        const incomeTransactions = transactions.filter(transaction => transaction.category === "Income");
+        return incomeTransactions.reduce((total, transaction) => total + transaction.amount, 0);
+    };
+
+    const getBalance = () => {
+        if (transactions.length === 0) return 0;
+
+        // Repeated code to prevent rerendering issues with getIncomeTransactions and getExpenseTransactions
+        const incomeEntries = transactions.filter(transaction => transaction.category === "Income");
+        const expenseEntries = transactions.filter(transaction => transaction.category === "Expense");
+        const totalIncome = incomeEntries.reduce((total, entry) => total + entry.amount, 0);
+        const totalExpenses = expenseEntries.reduce((total, entry) => total + entry.amount, 0);
+        return totalIncome - totalExpenses;
+    };
+
+    const getExpenseTypeTotals = () => {
+        const expenseEntries = transactions.filter(transaction => transaction.category === "Expense");
+        const totals = {
+            foodTotal: 0,
+            transportTotal: 0,
+            entertainmentTotal: 0,
+            utilitiesTotal: 0,
+            healthTotal: 0,
+            miscellaneousTotal: 0
+        };
+
+        expenseEntries.forEach(entry => {
+            switch (entry.type) {
+                case "Food":
+                    totals.foodTotal += entry.amount;
+                    break;
+                case "Transport":
+                    totals.transportTotal += entry.amount;
+                    break;
+                case "Entertainment":
+                    totals.entertainmentTotal += entry.amount;
+                    break;
+                case "Utilities":
+                    totals.utilitiesTotal += entry.amount;
+                    break;
+                case "Health":
+                    totals.healthTotal += entry.amount;
+                    break;
+                case "Miscellaneous":
+                    totals.miscellaneousTotal += entry.amount;
+                    break;
+                default:
+                    break;
+            }
+        });
+
+        return totals;
     };
 
     const addTransaction = async (transactionData) => {
@@ -80,8 +121,6 @@ export const useUserTransactions = () => {
                     },
                 });
             fetchTransactions(); // Fetch the updated list of transactions from the server to ensure state consistency
-            getExpenseTransactions(); // Fetch the updated list of expense transactions from the server to ensure state consistency
-            getIncomeTransactions(); // Fetch the updated list of income transactions from the server to ensure state consistency
         } catch (error) {
             console.error("Error adding transaction:", error);
         }
@@ -101,8 +140,6 @@ export const useUserTransactions = () => {
             });
             console.log("Deleted transaction:", response.data);
             fetchTransactions(); // Fetch the updated list of transactions from the server to ensure state consistency
-            getExpenseTransactions(); // Fetch the updated list of expense transactions from the server to ensure state consistency
-            getIncomeTransactions(); // Fetch the updated list of income transactions from the server to ensure state consistency
         } catch (error) {
             console.error("Error deleting transaction:", error);
         }
@@ -110,17 +147,17 @@ export const useUserTransactions = () => {
 
     useEffect(() => {
         fetchTransactions();
-        getExpenseTransactions();
-        getIncomeTransactions();
     }, []);
 
     return {
         transactions,
         addTransaction,
-        expenseTransactions,
         getExpenseTransactions,
         deleteTransaction,
-        incomeTransactions,
-        getIncomeTransactions
+        getIncomeTransactions,
+        getBalance,
+        getExpensesTotal,
+        getIncomeTotal,
+        getExpenseTypeTotals
     };
 }

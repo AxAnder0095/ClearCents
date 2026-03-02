@@ -1,14 +1,14 @@
-import { SpendingBarChart } from '../components/SpendingBarChart.jsx';
-import { useMockData } from '../hooks/useMockData.jsx';
+import { IncomeExpensesLineChart } from '../components/IncomeExpensesLineChart.jsx';
 import { useUserTransactions } from '../hooks/useUserTransactions.jsx';
 import { useState } from 'react';
 import '../styles/Income.scss';
 
 export const Income = () => {
-    const { addTransaction, incomeTransactions, deleteTransaction } = useUserTransactions();
+    const { transactions, addTransaction, getIncomeTransactions, deleteTransaction } = useUserTransactions();
     const [showAddIncomeForm, setShowAddIncomeForm] = useState(false);
     const [showEditIncomeForm, setShowEditIncomeForm] = useState(false);
     const MAX_DESCRIPTION_LENGTH = 35;
+    const incomeEntries = getIncomeTransactions(); // Reverse to show most recent first
 
     const today = new Intl.DateTimeFormat('en-US', {
         weekday: 'short',
@@ -31,13 +31,13 @@ export const Income = () => {
     };
 
     const displayIncomeEntries = () => {
-        return incomeTransactions.map((entry) => (
+        return incomeEntries.map((entry) => (
             <div key={entry._id} className='income-type'>
                 <div>
                     <p className='income-date'>
                         {formatEntryDate(entry.createdAt)}
                         <button onClick={() => handleDeleteIncome(entry._id)} className='delete-income'>Delete</button>
-                        <button className='edit-income' onClick={() => setShowEditIncomeForm(true)}>Edit</button>
+                        {/* <button className='edit-income' onClick={() => setShowEditIncomeForm(true)}>Edit</button> */}
                     </p>
                     <p className='income-name'>{entry.type}</p>
                     <p className='income-desc'>{entry.description}</p>
@@ -83,10 +83,10 @@ export const Income = () => {
                         <button className='add-income-button' onClick={() => setShowAddIncomeForm(true)}>+ Add Income</button>
                     </div>
                     <div className='income-bar-chart'>
-                        <SpendingBarChart />
+                        <IncomeExpensesLineChart transactions={transactions} />
                     </div>
                     <div className='income-list'>
-                        {incomeTransactions && incomeTransactions.length > 0 ? displayIncomeEntries() : <p>No income entries found.</p>}
+                        {incomeEntries && incomeEntries.length > 0 ? displayIncomeEntries() : <p>No income entries found.</p>}
                     </div>
                     {showAddIncomeForm && (
                         <div className='income-add-income-form-container'>
@@ -97,7 +97,7 @@ export const Income = () => {
                                     <option value='Salary'>Salary</option>
                                     <option value='Investments'>Investments</option>
                                     <option value='Gifts'>Gifts</option>
-                                    <option value='Bonux'>Bonux</option>
+                                    <option value='Bonus'>Bonus</option>
                                     <option value='Dividends'>Dividends</option>
                                     <option value='Miscellaneous'>Miscellaneous</option>
                                 </select>
@@ -107,7 +107,7 @@ export const Income = () => {
                                 <button className='submit-income-button' type='submit'>Submit</button>
                             </form>
                         </div>)}
-                    {showEditIncomeForm && (
+                    {/* {showEditIncomeForm && (
                         <div className='income-edit-income-form-container'>
                             <div><button onClick={() => setShowEditIncomeForm(false)}>Cancel</button></div>
                             <form className='income-edit-income-form'></form>
@@ -125,7 +125,7 @@ export const Income = () => {
                             <input type="number" name='amount' placeholder='Amount' />
                             <input type="date" name='date' placeholder='Date' />
                             <button className='submit-income-button' type='submit'>Submit</button>
-                        </div>)}
+                        </div>)} */}
                 </article>
             </section>
         </div>

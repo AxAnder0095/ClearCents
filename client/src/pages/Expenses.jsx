@@ -4,11 +4,16 @@ import { useState } from 'react';
 import '../styles/Expenses.scss';
 
 export const Expenses = () => {
-    const { addTransaction, expenseTransactions, deleteTransaction} = useUserTransactions();
+    const { transactions, addTransaction, deleteTransaction, getExpenseTransactions } = useUserTransactions();
     const [showAddExpenseForm, setShowAddExpenseForm] = useState(false);
     const [showEditExpenseForm, setShowEditExpenseForm] = useState(false);
     const MAX_DESCRIPTION_LENGTH = 35; 
-    const expenseEntries = [...expenseTransactions].reverse(); // Reverse to show most recent first
+    const expenseEntries = getExpenseTransactions(); // Reverse to show most recent first
+    // const expenseEntries = [...expenseTransactions].reverse(); // Reverse to show most recent first
+
+    if (!expenseEntries) {
+        return <p>Loading...</p>;
+    }
 
     const today = new Intl.DateTimeFormat('en-US', {
         weekday: 'short',
@@ -37,7 +42,7 @@ export const Expenses = () => {
                     <p className='expenses-date'>
                         {formatEntryDate(entry.createdAt)}
                         <button onClick={() => handleDeleteExpense(entry._id)} className='delete-expense'>Delete</button>
-                        <button className='edit-expense' onClick={() => setShowEditExpenseForm(true)}>Edit</button>
+                        {/* <button className='edit-expense' onClick={() => setShowEditExpenseForm(true)}>Edit</button> */}
                     </p>
                     <p className='expenses-name'>{entry.type}</p>
                     <p className='expenses-desc'>{entry.description}</p>
@@ -83,7 +88,7 @@ export const Expenses = () => {
                         <button className='add-expense-button' onClick={() => setShowAddExpenseForm(true)}>+ Add Expense</button>
                     </div>
                     <div className='expenses-bar-chart'>
-                        <SpendingBarChart />
+                        <SpendingBarChart transactions={transactions} />
                     </div>
                     <div className='expenses-list'>
                         {expenseEntries && expenseEntries.length > 0 ? displayExpenseEntries() : <p>No expense entries found.</p>}
@@ -107,7 +112,7 @@ export const Expenses = () => {
                                 <button className='submit-expense-button' type='submit'>Submit</button>
                             </form>
                         </div>)}
-                    {showEditExpenseForm && (
+                    {/* {showEditExpenseForm && (
                         <div className='expenses-edit-expense-form-container'>
                             <div><button onClick={() => setShowEditExpenseForm(false)}>Cancel</button></div>
                             <form className='expenses-edit-expense-form'></form>
@@ -124,7 +129,7 @@ export const Expenses = () => {
                                 <input type="number" name='amount' placeholder='Amount' />
                                 <input type="date" name='date' placeholder='Date' />
                                 <button className='submit-expense-button' type='submit'>Submit</button>
-                        </div>)}
+                        </div>)} */}
                 </article>
             </section>
         </div>
