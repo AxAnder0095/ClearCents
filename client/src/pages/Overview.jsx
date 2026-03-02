@@ -16,7 +16,7 @@ export const Overview = () => {
         getBalanceRatio,
         getExpenseTypeTotals
     } = useMockData();
-    const transactions = useUserTransactions();
+    const { transactions} = useUserTransactions();
     const incomeEntries = getIncomeEntries().reverse(); // Reverse to show most recent first
     const expenseEntries = getExpenseEntries().reverse(); // Reverse to show most recent first
     const expenseTypeTotals = getExpenseTypeTotals();

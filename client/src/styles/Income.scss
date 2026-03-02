@@ -57,4 +57,241 @@
     min-height: 0;
     border-top-left-radius: 2rem;
     padding: 2rem;
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+    .income-list-container {
+        background-color: #19183C;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        border: 1px solid rgba($color: #FFFFFF, $alpha: 0.12);
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 700px;
+        flex: 1;
+        min-height: 0;
+
+        .income-add-income {
+            margin-bottom: 3rem;
+            display: flex;
+            justify-content: flex-end;
+            flex-shrink: 0;
+
+            .add-income-button {
+                background-color: transparent;
+                color: #3AFFA9;
+                border: none;
+                padding: 0.5rem 1rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.2s ease;
+
+                &:hover {
+                    color: rgba($color: #3AFFA9, $alpha: 0.7)
+                }
+            }
+        }
+
+        .income-bar-chart {
+            width: 100%;
+            height: 200px;
+            margin-bottom: 3rem;
+            flex-shrink: 0;
+        }
+
+        .income-list {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-height: 0;
+            gap: 1rem;
+
+            overflow-y: auto;
+            padding-right: 0.5rem;
+            scrollbar-gutter: stable;
+
+            &::-webkit-scrollbar {
+                width: 0.5rem;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: #323072;
+                border-radius: 10px;
+            }
+
+            .income-type {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.75rem;
+                border-radius: 0.5rem;
+                background-color: #323072;
+
+                div {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.55rem;
+                    // border: 1px solid rgba($color: #FFFFFF, $alpha: 1);
+                    width: 300px;
+                    word-wrap: break-word;
+
+                    .income-name {
+                        font-size: 1.5rem;
+                        font-weight: 600;
+                    }
+
+                    .income-date {
+                        font-size: 0.875rem;
+                        color: #A0A0A0;
+                        // display: flex;
+                        // justify-content: space-between;
+
+                        .delete-income {
+                            background-color: transparent;
+                            color: #FF5555;
+                            border: none;
+                            padding: 0.25rem 0.5rem;
+                            font-weight: 600;
+                            cursor: pointer;
+                            transition: all 0.2s ease;
+
+                            &:hover {
+                                color: rgba($color: #FF5555, $alpha: 0.7);
+                            }
+                        }
+
+                        .edit-income {
+                            background-color: transparent;
+                            color: #43FFE9;
+                            border: none;
+                            padding: 0.25rem 0.5rem;
+                            font-weight: 600;
+                            cursor: pointer;
+                            transition: all 0.2s ease;
+
+                            &:hover {
+                                color: rgba($color: #43FFE9, $alpha: 0.7);
+                            }
+                        }
+                    }
+
+                    .income-desc {
+                        word-wrap: break-word;
+                    }
+                }
+
+                .income-amount {
+                    font-size: 1.25rem;
+                    // font-weight: 600;
+                    padding: 0.75rem 1rem;
+                    border-radius: 0.5rem;
+                    // background-color: #C0FFC0;
+                    // color: #00AF00;
+                    width: 100px;
+                    text-align: center;
+                }
+
+                .income-amount--income {
+                    background-color: #C0FFC0;
+                    color: #007700;
+
+                    &:hover {
+                        background-color: #00AF00;
+                        color: white;
+                    }
+                }
+
+                .income-amount--expenses {
+                    background-color: #FFB3B3;
+                    color: #FF0000;
+
+                    &:hover {
+                        background-color: #FF0000;
+                        color: white;
+                    }
+                }
+            }
+        }
+
+        .income-add-income-form-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #19183C;
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid rgba($color: #FFFFFF, $alpha: 0.12);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+
+            div {
+                display: flex;
+                justify-content: flex-end;
+
+                button {
+                    background-color: transparent;
+                    color: #FF5555;
+                    border: none;
+                    padding: 0.5rem 1rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+
+                    &:hover {
+                        color: rgba($color: #FF5555, $alpha: 0.7);
+                    }
+                }
+            }
+            .income-add-income-form {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+
+                input,
+                select {
+                    padding: 0.75rem 1rem;
+                    border-radius: 0.5rem;
+                    border: 1px solid rgba($color: #FFFFFF, $alpha: 0.12);
+                    background-color: transparent;
+                    color: white;
+
+                    &::placeholder {
+                        color: rgba($color: #FFFFFF, $alpha: 0.65);
+                    }
+                }
+
+                select {
+                    option {
+                        background-color: #19183C;
+                        color: white;
+                    }
+                }
+            }
+
+            .submit-income-button {
+                background-color: #43FFE9;
+                color: #19183C;
+                border: none;
+                padding: 0.75rem 1.5rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                align-self: flex-end;
+
+                &:hover {
+                    background-color: rgba($color: #43FFE9, $alpha: 0.7);
+                    color: white;
+                }
+            }
+        }
+
+    }
 }

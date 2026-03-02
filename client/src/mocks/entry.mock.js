@@ -49,9 +49,9 @@ export const entryMock = [
   { _id: 35, category: "Expense", type: "Entertainment", amount: 100, description: "Entertainment expense", date: new Date("2026-02-23T10:00:00.000+00:00") },
   { _id: 36, category: "Income", type: "Miscellaneous", amount: 800, description: "Miscellaneous income", date: new Date("2026-02-24T10:00:00.000+00:00") },
   { _id: 37, category: "Expense", type: "Transport", amount: 150, description: "Transport expense", date: new Date("2026-02-25T10:00:00.000+00:00") },
-  { _id: 38, category: "Expense", type: "Food", amount: 200, description: "Food expense", date: new Date("2026-02-28T10:00:00.000+00:00") },
+  { _id: 38, category: "Expense", type: "Food", amount: 200, description: "Arby's $10 Box", date: new Date("2026-02-28T10:00:00.000+00:00") },
   { _id: 39, category: "Income", type: "Miscellaneous", amount: 500, description: "Miscellaneous income", date: new Date("2026-02-27T10:00:00.000+00:00") },
   { _id: 40, category: "Income", type: "Dividends", amount: 1000, description: "Dividends income", date: new Date("2026-02-28T10:00:00.000+00:00") },
-  { _id: 41, category: "Expense", type: "Food", amount: 33, description: "Food expense", date: new Date("2026-03-01T10:00:00.000+00:00") },
+  { _id: 41, category: "Expense", type: "Food", amount: 33, description: "Papa John's", date: new Date("2026-03-01T10:00:00.000+00:00") },
 
 ];

@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const transactionSchema = new mongoose.Schema({
     category: {
         type: String,
-        enum: ['income', 'expense'],
+        enum: ['Income', 'Expense'],
         required: [true, 'Transaction category is required']
     },
     type: {

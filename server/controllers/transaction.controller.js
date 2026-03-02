@@ -10,20 +10,41 @@ export const getTransactions = async (req, res) => {
             return res.status(401).json({ message: 'Unauthorized' });
         }
         
-        // const transactions = await Transaction.find({ auth0Sub }).sort({ date: -1 });
-        const mockTransactions = [
-            {
-                _id: "1",
-                amount: 1000,
-                category: "Income",
-                type: "Salary",
-                date: new Date(),
-                description: "Monthly salary",
-            }]
+        const transactions = await Transaction.find({ auth0Sub }).sort({ date: -1 });
             
-        return res.json(mockTransactions);
+        return res.json(transactions);
     } catch (error) {
         return res.status(500).json({ message: 'Failed to fetch transactions' });
+    }
+};
+
+export const getExpenseTransactions = async (req, res) => {
+    try {
+        const auth0Sub = getAuth0Sub(req);
+        if (!auth0Sub) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
+
+        const expenseTransactions = await Transaction.find({ auth0Sub, category: 'Expense' }).sort({ date: -1 });
+
+        return res.json(expenseTransactions);
+    } catch (error) {
+        return res.status(500).json({ message: 'Failed to fetch expense transactions' });
+    }
+};
+
+export const getIncomeTransactions = async (req, res) => {
+    try {
+        const auth0Sub = getAuth0Sub(req);
+        if (!auth0Sub) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
+
+        const incomeTransactions = await Transaction.find({ auth0Sub, category: 'Income' }).sort({ date: -1 });
+
+        return res.json(incomeTransactions);
+    } catch (error) {
+        return res.status(500).json({ message: 'Failed to fetch income transactions' });
     }
 };
 
@@ -35,12 +56,13 @@ export const createTransaction = async (req, res) => {
             return res.status(401).json({ message: 'Unauthorized' });
         }
 
+        console.log("Creating transaction with data:", req.body, "for user:", auth0Sub);
         const transaction = await Transaction.create({
             ...req.body,
             auth0Sub,
         });
 
-        return res.status(201).json(transaction);
+        return res.status(201).json({ data: transaction });
     } catch (error) {
         return res.status(400).json({ message: error.message || 'Failed to create transaction' });
     }
