@@ -34,6 +34,13 @@ export const useUserTransactions = () => {
             .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     };
 
+    // next time you write a program that calculates like this, use the hook useMemo to memoize the filtered and sorted transactions to prevent unnecessary recalculations on re-renders. This will improve performance, especially as the number of transactions grows.
+    // const expenseEntries = useMemo(() => { // Memoize the filtered and sorted expense transactions to prevent unnecessary recalculations on re-renders
+    //     return transactions
+    //         .filter((transaction) => transaction.category === "Expense")
+    //         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    // }, [transactions]);
+
     const getIncomeTransactions = () => {
         if (transactions.length === 0) return [];
 
